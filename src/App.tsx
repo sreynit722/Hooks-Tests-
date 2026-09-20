@@ -1,11 +1,12 @@
-import { useState } from "react";
+import SearchBox from "./components/SearchBox";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 import NavBar from "./components/NavBar";
 import ProductList from "./components/ProductList";
 import CheckoutSummary from "./components/CheckoutSummary";
 
 function App() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useLocalStorage("theme-is-dark", true);
 
   return (
     <div
@@ -20,6 +21,8 @@ function App() {
           isDark={isDark}
           onToggleTheme={() => setIsDark((value) => !value)}
         />
+
+        <SearchBox isDark={isDark} />
 
         <main className="mt-8 grid gap-6 xl:grid-cols-[1.6fr_0.9fr]">
           <ProductList isDark={isDark} />
